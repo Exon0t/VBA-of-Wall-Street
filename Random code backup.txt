@@ -1,0 +1,113 @@
+Sub macrotest()
+
+    Dim testmessage As String
+    testmessage = "Hello World"
+
+
+MsgBox (testmessage)
+
+End Sub
+Sub corretvalue()
+
+    For i = 1 To 3
+        If YearValue = "2018" Or YearValue = "2017" Then
+            Exit For
+        ElseIf i = 3 Then
+         MsgBox ("Well look at you, you found an easter egg. Now reclick 'Run Analysis' to try again" & vbCrLf & "\(`0´)/")
+         Exit Sub
+        Else
+            MsgBox ("Please put correct 'YEAR'")
+        End If
+    Next i
+End Sub
+Sub DQAnalysis()
+    Worksheets("DQ Analysis").Activate
+
+    Range("A1").Value = "DAQO (Ticker: DQ)"
+
+    'Create a header row
+    Cells(3, 1).Value = "Year"
+    Cells(3, 2).Value = "Total Daily Volume"
+    Cells(3, 3).Value = "Return"
+    Worksheets("2018").Activate
+
+    'set initial volume to zero
+    totalVolume = 0
+
+    Dim startingprice As Double
+    Dim endingprice As Double
+
+    'Establish the number of rows to loop over
+    rowStart = 2
+    rowEnd = Cells(Rows.Count, "A").End(xlUp).Row ' found at https://www.excelcampus.com/vba/find-last-row-column-cell/
+
+    'loop over all the rows
+    For i = rowStart To rowEnd
+
+        If Cells(i, 1).Value = "DQ" Then
+
+            'increase totalVolume by the value in the current row
+            totalVolume = totalVolume + Cells(i, 8).Value
+
+        End If
+
+        If Cells(i - 1, 1).Value <> "DQ" And Cells(i, 1).Value = "DQ" Then
+
+            startingprice = Cells(i, 6).Value
+
+        End If
+
+        If Cells(i + 1, 1).Value <> "DQ" And Cells(i, 1).Value = "DQ" Then
+
+            endingprice = Cells(i, 6).Value
+
+        End If
+
+    Next i
+
+    Worksheets("DQ Analysis").Activate
+    Cells(4, 1).Value = 2018
+    Cells(4, 2).Value = totalVolume
+    Cells(4, 3).Value = (endingprice / startingprice) - 1
+
+
+End Sub
+
+Sub test()
+rowStart = 2
+rowEnd = 3013
+totalVolume = 0
+
+Worksheets("2018").Activate
+For i = rowStart To rowEnd
+'increase totalVolume
+totalVolume = totalVolume + Cells(i, 8).Value
+
+Next i
+MsgBox (totalVolume)
+End Sub
+
+Sub squarenumbers()
+Worksheets("DQ Analysis").Activate
+For i = 1 To 10
+
+    Cells(1, i).Value = i * i
+    
+    Next i
+End Sub
+
+Sub test1()
+Worksheets("2018").Activate
+rowStart = 2
+rowEnd = 3013
+totalVolume = 0
+For i = rowStart To rowEnd
+    'increase total volume if ticker is dq
+    If Cells(i, 1).Value = "DQ" Then
+        totalVolume = totalVolume + Cells(i, 8).Value
+    End If
+Next i
+MsgBox (totalVolume)
+End Sub
+
+
