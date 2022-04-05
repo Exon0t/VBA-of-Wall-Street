@@ -12,24 +12,24 @@ Our recent client Steve originally asked for a workbook that would be of use to 
 ---
 While testing out run times I found it Tedious to screen shot every pop-up screen quickly making a program that will save the values for me. 
 
----
 ![runtime.png](runtime.png)
 ![Capture.PNG](Capture.PNG)
 
 ---
 The first table shows my code while the second shows the speed of the module’s code. While looking at the tables separately we can see that the times that the time past are relatively the same. But just to make things better we can grab the average of each table.
 
-![Averatge_Runtime.png](Averatge_Runtime.png
+![Averatge_Runtime.png](Averatge_Runtime.png)
 
 ---
 Quickly looking at the little table of the averages based on table and year we can see that my table ran 2017 faster while the modules ran 2018 faster. Meaning there is really no difference in how fast it completes it based on the year. Now this can be a happy accident more testing needed with more controlled variables such as running on another machine. The biggest difference between my code and the modules is that the modules code needs to initialize the array of all tickers (as seen below). While 
-![code_1.png](code_1.png)
+
+![Code_1.png](Code_1.png)
 
 ---
 mine does not. I used the original code that only went through ‘dq’ and made some altercations. The altercations being that it will go through all tickers no just ‘dq’. I’ve done this by creating a new variable ‘Ticker’ and grabbing the first ticker then having the if statements determine if the next value was still ‘Ticker’. If it wasn’t it would print the code on the table accordingly, grabs the next new ‘ticker’ and adds 1 to a new variable ‘b’(which is just a place holder so data won’t be over lapped). 
-![code_2](code_2)
 
----
+![code_2.png](code_2.png)
+
 ![All_Stocks_Tables.png](All_Stocks_Tables.png)
 
 ---
